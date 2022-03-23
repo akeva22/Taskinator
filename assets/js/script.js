@@ -5,7 +5,7 @@ var taskIdCounter = 0;
 var formEl = document.querySelector("#task-form");
 var tasksToDoEl = document.querySelector("#tasks-to-do");
 
-var taskFormHandler = function () {
+var taskFormHandler = function (event) {
 
   event.preventDefault();
 
@@ -47,7 +47,7 @@ var taskFormHandler = function () {
   }
 };
 
-var completeEditTask = function(taskName, taskType, taskId) {
+var completeEditTask = function (taskName, taskType, taskId) {
 
   //find the matching task list item
   var taskSelected = document.querySelector(".task-item[data-task-id='" + taskId + "']");
@@ -173,21 +173,22 @@ var editTask = function (taskId) {
 };
 
 var deleteTask = function (taskId) {
- 
+
   var taskSelected = document.querySelector(".task-item[data-task-id='" + taskId + "']");
   taskSelected.remove();
-  console.log(taskSelected);
+  console.log(taskSelected)
+
 };
 
-var taskStatusChangeHandler = function(event) {
+var taskStatusChangeHandler = function (event) {
   console.log(event.target.value);
+   debugger;
+
+  var taskId = event.target.closest(".task-item[data-task-id]").getAttribute("data-task-id");
+  console.log(taskId)
   
-
-  var taskId = event.target.getAttribute("data-task-id");
-
- 
   var taskSelected = document.querySelector(".task-item[data-task-id='" + taskId + "']");
-  debugger;
+  console.log(taskSelected);
 
 
   var statusValue = event.target.value.toLowerCase();
